@@ -74,6 +74,14 @@ class PersonListVC: UITableViewController {
         return true
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let deletedPerson = persons![indexPath.row]
+        RealmManager.shared.deletePerson(person: deletedPerson)
+        persons?.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        
+    }
+    
     func loadPersons() {
         persons = RealmManager.shared.getAllPersons()
         tableView.reloadData()
