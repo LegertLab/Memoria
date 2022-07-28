@@ -22,32 +22,6 @@ class CreateQuestionnarieVC: UIViewController, UIPickerViewDelegate, UIPickerVie
     var choosenInterviewer = String()
     var choosenBiography = String()
     
-    //MARK - PickerView
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return personsNames.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return personsNames[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        if pickerView is InterviewerPickerView {
-            choosenInterviewer = personsNames[row]
-        } else {
-            choosenBiography = personsNames[row]
-        }
-    }
-    
-    
-    
-    
     //MARK - Normal code
     let interviewerTextLabel = { () -> UILabel in
         let label = UILabel()
@@ -118,10 +92,36 @@ class CreateQuestionnarieVC: UIViewController, UIPickerViewDelegate, UIPickerVie
         
         navigationItem.title = "Создание опросника"
         
+        choosenInterviewer = personsNames[0]
+        choosenBiography = personsNames[0]
+        
         setupInterviewerStack()
         setupBiographyStack()
         setupLayout()
         
+    }
+    
+    //MARK - PickerView
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return personsNames.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return personsNames[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        if pickerView is InterviewerPickerView {
+            choosenInterviewer = personsNames[row]
+        } else {
+            choosenBiography = personsNames[row]
+        }
     }
     
     fileprivate func setupInterviewerStack () {
