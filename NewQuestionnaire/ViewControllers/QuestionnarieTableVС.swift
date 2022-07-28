@@ -40,6 +40,7 @@ class QuestionnarieTableVС: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.numberOfLines = 0
         guard let arrayOfQuestions = arrayOfQuestions else {
             cell.textLabel?.text = "Ни одного вопроса нет"
             return cell
