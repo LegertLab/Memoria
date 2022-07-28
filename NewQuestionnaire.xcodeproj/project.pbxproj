@@ -70,14 +70,12 @@
 			children = (
 				A6170991282BFC6500B6B873 /* PersonListVC.swift */,
 				A617099B282D4C0800B6B873 /* PersonDetailsVC.swift */,
+				A6F2AC0D2835254500CBC01C /* QuestionVC.swift */,
+				A6F2AC062834E4FB00CBC01C /* QuestionnarieTableVС.swift */,
 				A6F2AC132835295C00CBC01C /* CreateEditPersonVC.swift */,
 				A6F2AC102835289D00CBC01C /* CreateEditQuestionVC.swift */,
-				A6F2AC062834E4FB00CBC01C /* QuestionnarieTableVС.swift */,
 				A6F2AC012833AA3500CBC01C /* CreateQuestionnarieVC.swift */,
-				A6F2AC0D2835254500CBC01C /* QuestionVC.swift */,
-				A6F2AC482837AE8600CBC01C /* NoteVC.swift */,
-				A6F2AC4C2837B24E00CBC01C /* PhotoVC.swift */,
-				A6F2AC4F2837BC6A00CBC01C /* AudioVC.swift */,
+				A66D01692892531900FDCEAD /* Question content */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -128,6 +126,16 @@
 				A6170995282D0DBD00B6B873 /* RealmManager.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		A66D01692892531900FDCEAD /* Question content */ = {
+			isa = PBXGroup;
+			children = (
+				A6F2AC482837AE8600CBC01C /* NoteVC.swift */,
+				A6F2AC4C2837B24E00CBC01C /* PhotoVC.swift */,
+				A6F2AC4F2837BC6A00CBC01C /* AudioVC.swift */,
+			);
+			path = "Question content";
 			sourceTree = "<group>";
 		};
 		A6F2AC162835377D00CBC01C /* Model */ = {

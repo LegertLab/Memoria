@@ -22,6 +22,11 @@ class QuestionnarieTableVС: UITableViewController {
         arrayOfQuestions = Array(questionnarie.listOfQuestions)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tableView.reloadData()
+    }
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -74,6 +79,15 @@ class QuestionnarieTableVС: UITableViewController {
         let actionsConfiguration = UISwipeActionsConfiguration(actions: [actionEditInstance])
         return actionsConfiguration
     }
+    
+//    func editQuestionWithСlosure(question: Question) {
+//    let editScreen = CreateEditQuestionVC()
+//    editScreen.question = question
+//    editScreen.completionHandler = { [unowned self] updatedQuestion in
+//    question = updatedQuestion
+//    }
+//    self.navigationController?.pushViewController(editScreen, animated: true)
+//    }
     
     @objc private func addQuestionTapped () {
         let addQuestionVC = CreateEditQuestionVC()

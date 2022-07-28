@@ -10,7 +10,14 @@ import RealmSwift
 
 class DataDefaultQuestions {
     
-    lazy var lastIDQuestion: Int? = Array(RealmManager.shared.localRealm.objects(Question.self).sorted(byKeyPath: "id", ascending: false))[0].id
+    lazy var lastIDQuestion: Int? = {
+        var lastID = 0
+        let arrayOfExistedQuestions = Array(RealmManager.shared.localRealm.objects(Question.self).sorted(byKeyPath: "id", ascending: false))
+        if arrayOfExistedQuestions.count > 0 {
+            lastID = arrayOfExistedQuestions[0].id
+        }
+        return lastID
+    }()
     
     func getDefaultListOfQuestions () -> [Question] {
         

@@ -15,7 +15,7 @@ class PersonListVC: UITableViewController {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPersonTapped))
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "personListCell")
-        self.title = "Моя семья"
+        self.title = "Мои персоны"
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem
         
@@ -27,7 +27,6 @@ class PersonListVC: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         loadPersons()
-        
     }
     
     // MARK: - Table view data source

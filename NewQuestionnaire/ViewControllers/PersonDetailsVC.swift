@@ -61,20 +61,20 @@ class PersonDetailsVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         tableView.delegate = self
         
         navigationItem.title = "Выбранная персона"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editPerson))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editPersonWithСlosure))
         
-        if let personImage = person.image {
-            personImageView.image = UIImage(named: personImage)
-        } else {
-            personImageView.image = UIImage(named: "noImage")
-        }
+//        if let personImage = person.image {
+//            personImageView.image = UIImage(named: personImage)
+//        } else {
+//            personImageView.image = UIImage(named: "noImage")
+//        }
         personImageView.contentMode = .scaleAspectFill
         personImageView.layer.cornerRadius = 10
         personImageView.layer.borderWidth = 1
         personImageView.layer.borderColor = UIColor.darkGray.cgColor
         personImageView.clipsToBounds = true
         
-        personNameLabel.text = person.name
+        //personNameLabel.text = person.name
         
         view.addSubview(segmentedControl)
         view.addSubview(tableView)
@@ -85,6 +85,13 @@ class PersonDetailsVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        personNameLabel.text = person.name
+        
+        if let personImage = person.image {
+            personImageView.image = UIImage(named: personImage)
+        } else {
+            personImageView.image = UIImage(named: "noImage")
+        }
         tableView.reloadData()
         
     }
@@ -171,10 +178,21 @@ class PersonDetailsVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         tableView.reloadData()
     }
     
-    @objc func editPerson() {
-        let editPersonVC = CreateEditPersonVC()
-        editPersonVC.person = person
-        self.navigationController?.pushViewController(editPersonVC, animated: true)
+    @objc func editPersonWithСlosure() {
+    let editScreen = CreateEditPersonVC()
+    editScreen.person = person
+    editScreen.completionHandler = { [unowned self] updatedPerson in
+    person = updatedPerson
     }
+    self.navigationController?.pushViewController(editScreen, animated: true)
+    }
+    
+//    @objc func editPerson() {
+//        let editPersonVC = CreateEditPersonVC()
+//        editPersonVC.person = person
+//        self.navigationController?.pushViewController(editPersonVC, animated: true)
+//    }
+    
+    
 }
 

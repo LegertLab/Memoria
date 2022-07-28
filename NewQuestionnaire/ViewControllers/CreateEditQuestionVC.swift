@@ -1,5 +1,5 @@
 //
-//  CreateChangeQuestionVC.swift
+//  CreateEditQuestionVC.swift
 //  Memoria
 //
 //  Created by Anastasia Legert on 18.05.2022.
@@ -8,6 +8,8 @@
 import UIKit
 
 class CreateEditQuestionVC: UIViewController {
+    
+    var completionHandler: ((Question) -> Void)?
     var question = Question()
     var questionnarie = Questionnaire()
     var questionTextField = { () -> UITextField in

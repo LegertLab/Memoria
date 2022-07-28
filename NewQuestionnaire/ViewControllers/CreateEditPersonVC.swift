@@ -1,5 +1,5 @@
 //
-//  CreateChangePersonVC.swift
+//  CreateEditPersonVC.swift
 //  Memoria
 //
 //  Created by Anastasia Legert on 18.05.2022.
@@ -8,6 +8,8 @@
 import UIKit
 
 class CreateEditPersonVC: UIViewController {
+    
+    var completionHandler: ((Person) -> Void)?
     
     var person = Person()
     var personImageUrl = ""
@@ -29,6 +31,7 @@ class CreateEditPersonVC: UIViewController {
         button.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
         return button
     }()
+    
     var personNameTextField = { () -> UITextField in
         let textfield = UITextField()
         textfield.layer.cornerRadius = 8
@@ -74,9 +77,6 @@ class CreateEditPersonVC: UIViewController {
         personImageView.centerXInSuperview()
         
         chooseAvatarButton.anchor(top: personImageView.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: UIEdgeInsets(top: 20, left: 20, bottom: 0, right: 20), size: CGSize(width: 0, height: 30))
-        
-        
-        
     }
     
     @objc func savePerson() {
@@ -88,7 +88,16 @@ class CreateEditPersonVC: UIViewController {
             person.name = personNameTextField.text!
             RealmManager.shared.savePerson(person: person)
         }
-        
+        savePersonWithClosure()
+        //navigationController?.popViewController(animated: true)
+    }
+    
+    func savePersonWithClosure() {
+        // получаем обновленные данные
+        let updatedPerson = person
+        // вызваем замыкание
+        completionHandler?(updatedPerson)
+        // возвращаемся на предыдущий экран
         navigationController?.popViewController(animated: true)
     }
     
