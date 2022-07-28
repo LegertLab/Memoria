@@ -58,7 +58,16 @@ class CreateEditQuestionVC: UIViewController {
             RealmManager.shared.saveQuestionIn(questionnarie: questionnarie, question: question)
             
         }
-        
+        saveQuestionWithClosure()
+        //navigationController?.popViewController(animated: true)
+    }
+    
+    func saveQuestionWithClosure() {
+        // получаем обновленные данные
+        let updatedQuestion = question
+        // вызваем замыкание
+        completionHandler?(updatedQuestion)
+        // возвращаемся на предыдущий экран
         navigationController?.popViewController(animated: true)
     }
     

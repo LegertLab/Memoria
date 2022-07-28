@@ -67,12 +67,15 @@ class QuestionnarieTableVС: UITableViewController {
     
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        guard let tappedQuestion = arrayOfQuestions?[indexPath.row] else {
+        guard var tappedQuestion = arrayOfQuestions?[indexPath.row] else {
             return nil }
         
         let actionEditInstance = UIContextualAction(style: .normal, title: "Изменить") { _,_,_ in
             let editVC = CreateEditQuestionVC()
             editVC.question = tappedQuestion
+            editVC.completionHandler = { [unowned self] updatedQuestion in
+            tappedQuestion = updatedQuestion
+                }
             self.navigationController?.pushViewController(editVC, animated: true)
         }
         
