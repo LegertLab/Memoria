@@ -63,23 +63,16 @@ class PersonDetailsVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         navigationItem.title = "Выбранная персона"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editPersonWithСlosure))
         
-//        if let personImage = person.image {
-//            personImageView.image = UIImage(named: personImage)
-//        } else {
-//            personImageView.image = UIImage(named: "noImage")
-//        }
         personImageView.contentMode = .scaleAspectFill
         personImageView.layer.cornerRadius = 10
         personImageView.layer.borderWidth = 1
         personImageView.layer.borderColor = UIColor.darkGray.cgColor
         personImageView.clipsToBounds = true
         
-        //personNameLabel.text = person.name
-        
         view.addSubview(segmentedControl)
         view.addSubview(tableView)
         view.addSubview(addQuestionnarieButton)
-        
+
         setupLayout()
     }
     
@@ -92,6 +85,13 @@ class PersonDetailsVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         } else {
             personImageView.image = UIImage(named: "noImage")
         }
+        
+        loadQuestionnariesForPerson()
+        loadQuestionnariesAboutPerson()
+        
+        rowsToDisplay = questionnariesAboutPerson
+        segmentedControl.selectedSegmentIndex = 0
+        
         tableView.reloadData()
         
     }
@@ -109,8 +109,9 @@ class PersonDetailsVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     @objc fileprivate func createQuestionnarie () {
-        let viewController = CreateQuestionnarieVC()
-        self.present(viewController, animated: true, completion: nil)
+        let createVC = CreateQuestionnarieVC()
+        //self.present(viewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(createVC, animated: true)
     }
     
     
@@ -179,20 +180,12 @@ class PersonDetailsVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     @objc func editPersonWithСlosure() {
-    let editScreen = CreateEditPersonVC()
-    editScreen.person = person
-    editScreen.completionHandler = { [unowned self] updatedPerson in
-    person = updatedPerson
+        let editScreen = CreateEditPersonVC()
+        editScreen.person = person
+        editScreen.completionHandler = { [unowned self] updatedPerson in
+            person = updatedPerson
+        }
+        self.navigationController?.pushViewController(editScreen, animated: true)
     }
-    self.navigationController?.pushViewController(editScreen, animated: true)
-    }
-    
-//    @objc func editPerson() {
-//        let editPersonVC = CreateEditPersonVC()
-//        editPersonVC.person = person
-//        self.navigationController?.pushViewController(editPersonVC, animated: true)
-//    }
-    
-    
 }
 

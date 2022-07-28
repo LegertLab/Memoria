@@ -231,7 +231,8 @@ class CreateQuestionnarieVC: UIViewController, UIPickerViewDelegate, UIPickerVie
             newQuestionnarie.listOfQuestions.append(question)
         }
         RealmManager.shared.saveQuestionnarie(questionnarie: newQuestionnarie)
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+        //self.dismiss(animated: true, completion: nil)
     }
     
     class InterviewerPickerView: UIPickerView {
